@@ -43,65 +43,60 @@ Hardware Setup
 
 Software Development
 
-    Node.js Server
+    a. Node.js Server
         Dependencies:
             mqtt: For MQTT communication.
             express: For API endpoints.
             bcrypt: For encrypting access codes.
             dotenv: For environment variable management.
-        Functionality:
-            Validate access codes against the database.
-            Publish validation results to the MQTT broker.
-            Log all access attempts and suspicious activities.
+    b. Functionality:
+            - Validate access codes against the database.
+            - Publish validation results to the MQTT broker.
+            - Log all access attempts and suspicious activities.
 
-    Raspberry Pi Script
+    c. Raspberry Pi Script
         Dependencies:
             mqtt: For MQTT communication.
             gpiozero: For controlling GPIO pins (door motor).
-        Functionality:
-            Read input from the keypad.
-            Publish entered codes to the MQTT broker.
-            Subscribe to validation responses and trigger the motor if the code is valid.
+    d.Functionality:
+            - Read input from the keypad.
+            - Publish entered codes to the MQTT broker.
+            - Subscribe to validation responses and trigger the motor if the code is valid.
 
-    MQTT Communication
-        Topic Structure:
+    e. MQTT Communication
+        - Topic Structure:
             golfstudio/access/<raspberry_pi_id>/validate for sending codes to the server.
             golfstudio/access/<raspberry_pi_id>/response for receiving validation responses.
-        Encrypted communication using TLS.
+        - Encrypted communication using TLS.
 
-    Access Code Generation
-        Generate random six-digit codes.
-        Hash codes with bcrypt before storing them in the database.
+    f. Access Code Generation
+        - Generate random six-digit codes.
+        - Hash codes with bcrypt before storing them in the database.
 
-    Database
-        Store booking details and hashed access codes.
-        Use indexed columns for quick lookup.
+    g. Database
+        - Store booking details and hashed access codes.
+        - Use indexed columns for quick lookup.
 
-    Notification Service
-        Integrate with a service like Twilio or AWS SES for sending notifications.
-        Send real-time alerts for successful accesses or suspicious activities.
+    h. Notification Service
+        - Integrate with a service like Twilio or AWS SES for sending notifications.
+        - Send real-time alerts for successful accesses or suspicious activities.
 
 4. Security Features
 
-    Encrypted Communication:
-        Use TLS for MQTT communication.
-    Code Validation:
-        Validate codes server-side to prevent tampering.
-    Robust Logging:
-        Log every access attempt with timestamps and results.
-    Rate Limiting:
-        Implement rate limits to prevent brute-force attacks.
-    Administrative Alerts:
-        Send alerts for unusual activities (e.g., >5 failed attempts within 10 minutes).
+    - Encrypted Communication: Use TLS for MQTT communication.
+    - Code Validation: Validate codes server-side to prevent tampering.
+    - Robust Logging:Log every access attempt with timestamps and results.
+    - Rate Limiting: Implement rate limits to prevent brute-force attacks.
+    -Administrative Alerts: Send alerts for unusual activities (e.g., >5 failed attempts within 10 minutes).
 
 5. Scalability Considerations
 
-    Deploy the Node.js server on a scalable cloud platform (e.g., AWS, GCP).
-    Use a distributed MQTT broker (e.g., EMQX) for handling multiple Raspberry Pis.
-    Integrate the system with additional booking platforms via APIs.
+    - Deploy the Node.js server on a scalable cloud platform (e.g., AWS, GCP).
+    - Use a distributed MQTT broker (e.g., EMQX) for handling multiple Raspberry Pis.
+    - Integrate the system with additional booking platforms via APIs.
 
 6. Testing
 
-    Simulate access attempts with valid and invalid codes.
-    Test MQTT communication for delays and reliability.
-    Validate encryption and data integrity using tools like Wireshark.
+    - Simulate access attempts with valid and invalid codes.
+    - Test MQTT communication for delays and reliability.
+    - Validate encryption and data integrity using tools like Wireshark.
