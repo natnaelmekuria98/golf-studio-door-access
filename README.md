@@ -5,39 +5,39 @@ Designing and Implementing a Secure Door Access System for a Golf Studio
 
 The system integrates the following components:
 
-    Booking Platform: Generates six-digit access codes after booking confirmation.
-    Raspberry Pi: Serves as the edge device to manage door access, validate codes, and control the door motor.
-    Node.js Server: Central application server that handles MQTT communication and code validation.
-    MQTT Broker: Facilitates real-time communication between the server and the Raspberry Pi.
-    Database: Stores booking and access code information securely.
-    Notification Service: Sends alerts and notifications for access logs and suspicious activities.
+- Booking Platform: Generates six-digit access codes after booking confirmation.
+- Raspberry Pi: Serves as the edge device to manage door access, validate codes, and control the door motor.
+- Node.js Server: Central application server that handles MQTT communication and code validation.
+- MQTT Broker: Facilitates real-time communication between the server and the Raspberry Pi.
+- Database: Stores booking and access code information securely.
+- Notification Service: Sends alerts and notifications for access logs and suspicious activities.
 
 2. System Architecture
 
     Booking Flow:
-        Customers book a slot via the booking platform.
-        The booking platform generates a unique, time-bound six-digit access code.
-        The code is sent to the customer via email or SMS.
+   - Customers book a slot via the booking platform.
+   - The booking platform generates a unique, time-bound six-digit access code.
+   - The code is sent to the customer via email or SMS.
 
     Access Flow:
-        The customer enters the code on the keypad (connected to the Raspberry Pi).
-        The Raspberry Pi sends the entered code via MQTT to the Node.js server for validation.
-        The server validates the code and sends a response back to the Raspberry Pi.
-        If valid, the Raspberry Pi triggers the door motor to unlock.
+   - The customer enters the code on the keypad (connected to the Raspberry Pi).
+   - The Raspberry Pi sends the entered code via MQTT to the Node.js server for validation.
+   - The server validates the code and sends a response back to the Raspberry Pi.
+   - If valid, the Raspberry Pi triggers the door motor to unlock.
 
     Logging and Notification:
-        Every access attempt is logged with timestamps.
-        Notifications are sent for successful accesses or suspicious activities (e.g., multiple failed attempts).
+   - access attempt is logged with timestamps.
+   - Nofications are sent for successful accesses or suspicious activities (e.g., multiple failed attempts).
 
-3. Implementation Steps
+4. Implementation Steps
 Hardware Setup
 
     Raspberry Pi:
-        Connect a keypad for code entry.
-        Use a relay module to control the door motor.
-        Install an Ethernet or Wi-Fi module for network connectivity.
+    - Connect a keypad for code entry.
+    - Use a relay module to control the door motor.
+    - Install an Ethernet or Wi-Fi module for network connectivity.
     Door Motor:
-        Use a motorized lock mechanism compatible with relay modules.
+   - Use a motorized lock mechanism compatible with relay modules.
     MQTT Broker:
         Deploy an MQTT broker (e.g., Mosquitto) on the same network or a cloud service.
 
