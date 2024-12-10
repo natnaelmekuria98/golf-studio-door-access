@@ -1,6 +1,5 @@
-# golf-studio-door-access
+# Designing and Implementing a Secure Door Access System for a Golf Studio
 
-Designing and Implementing a Secure Door Access System for a Golf Studio
 1. System Overview
 
 The system integrates the following components:
